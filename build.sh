@@ -13,9 +13,9 @@ if not User.objects.filter(username='admin').exists():
     User.objects.create_superuser('admin', 'admin@example.com', 'password123')
 EOF
 
-echo "Verificando instalaciones existentes de Google Chrome y chromedriver..."
-google-chrome --version  echo "Google Chrome no está instalado"
-chromedriver --version  echo "Chromedriver no está instalado"
+# echo "Verificando instalaciones existentes de Google Chrome y chromedriver..."
+# google-chrome --version  echo "Google Chrome no está instalado"
+# chromedriver --version  echo "Chromedriver no está instalado"
 
 
 echo "Iniciando Celery beat..."
