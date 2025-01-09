@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close" data-vertical-style="overlay">
+<head>
+    <!-- Meta Data -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'assets/images/brand-logos/favicon.ico' %}" type="image/x-icon">
+
+    <!-- Choices JS -->
+    <script src="{% static 'assets/libs/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+    <!-- Main Theme Js -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    
+    <!-- Bootstrap Css -->
+    <link id="style" href="{% static 'assets/libs/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Style Css -->
+    <link href="{% static 'assets/css/styles.css' %}" rel="stylesheet">
+
+    <!-- Icons Css -->
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet">
+
+    <!-- Node Waves Css -->
+    <link href="{% static 'assets/libs/node-waves/waves.min.css' %}" rel="stylesheet"> 
+
+    <!-- Simplebar Css -->
+    <link href="{% static 'assets/libs/simplebar/simplebar.min.css' %}" rel="stylesheet">
+    
+    <!-- Color Picker Css -->
+    <link rel="stylesheet" href="{% static 'assets/libs/flatpickr/flatpickr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/@simonwep/pickr/themes/nano.min.css' %}">
+
+    <!-- Choices Css -->
+    <link rel="stylesheet" href="{% static 'assets/libs/choices.js/public/assets/styles/choices.min.css' %}">
+
+    <!-- DiegoB -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css">
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+    <script src="{% static 'assets/js/datatables.js' %}"></script>
+            
+
+    <!-- Meta tags, CSS links, etc. -->
+    {% block head %}
+    <!-- Incluye los estilos comunes -->
+    {% include 'common_styles.html' %}
+    {% endblock %}
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" >
+        <img src="{% static 'assets/images/media/loader.svg' %}" alt="">
+    </div>
+    <!-- Loader -->
+
+    <div class="page">
+    <!-- Encabezado -->
+    {% block header %}
+    {% include 'header.html' %}
+    {% endblock %}
+
+
+    {% block sidebar %}
+    {% include 'sidebar.html' %}
+    {% endblock %}
+
+    <!-- Start::app-content -->
+    <div class="main-content app-content">
+        <div class="container-fluid">
+
+            {% block content %}
+            <!-- Page Header Close -->
+
+            <!-- Start::row-1 -->
+            <div class="row">
+                
+            </div>
+            <!--End::row-1 -->
+
+            {% endblock %}
+
+        </div>
+    </div>
+    <!-- End::app-content -->
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-body">
+                <div class="input-group">
+                <a href="javascript:void(0);" class="input-group-text" id="Search-Grid"><i class="fe fe-search header-link-icon fs-18"></i></a>
+                <input type="search" class="form-control border-0 px-2" placeholder="Search" aria-label="Username">
+                <a href="javascript:void(0);" class="input-group-text" id="voice-search"><i class="fe fe-mic header-link-icon"></i></a>
+                <a href="javascript:void(0);" class="btn btn-light btn-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fe fe-more-vertical"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+                </ul>
+                </div>
+                <div class="mt-4">
+                <p class="font-weight-semibold text-muted mb-2">Are You Looking For...</p>
+                <span class="search-tags"><i class="fe fe-user me-2"></i>People<a href="javascript:void(0)" class="tag-addon"><i class="fe fe-x"></i></a></span>
+                <span class="search-tags"><i class="fe fe-file-text me-2"></i>Pages<a href="javascript:void(0)" class="tag-addon"><i class="fe fe-x"></i></a></span>
+                <span class="search-tags"><i class="fe fe-align-left me-2"></i>Articles<a href="javascript:void(0)" class="tag-addon"><i class="fe fe-x"></i></a></span>
+                <span class="search-tags"><i class="fe fe-server me-2"></i>Tags<a href="javascript:void(0)" class="tag-addon"><i class="fe fe-x"></i></a></span>
+                </div>
+                <div class="my-4">
+                <p class="font-weight-semibold text-muted mb-2">Recent Search :</p>
+                <div class="p-2 border br-5 d-flex align-items-center text-muted mb-2 alert">
+                    <a href="notifications.html"><span>Notifications</span></a>
+                    <a class="ms-auto lh-1" href="javascript:void(0);" data-bs-dismiss="alert" aria-label="Close"><i class="fe fe-x text-muted"></i></a>
+                </div>
+                <div class="p-2 border br-5 d-flex align-items-center text-muted mb-2 alert">
+                    <a href="alerts.html"><span>Alerts</span></a>
+                    <a class="ms-auto lh-1" href="javascript:void(0);" data-bs-dismiss="alert" aria-label="Close"><i class="fe fe-x text-muted"></i></a>
+                </div>
+                <div class="p-2 border br-5 d-flex align-items-center text-muted mb-0 alert">
+                    <a href="mail.html"><span>Mail</span></a>
+                    <a class="ms-auto lh-1" href="javascript:void(0);" data-bs-dismiss="alert" aria-label="Close"><i class="fe fe-x text-muted"></i></a>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group ms-auto">
+                <button class="btn btn-sm btn-primary-light">Search</button>
+                <button class="btn btn-sm btn-primary">Clear Recents</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Pie de página -->
+    {% block footer %}
+    {% include 'footer.html' %}
+    {% endblock %}
+    
+</div>
+
+    <!-- Scripts comunes -->
+    {% block scripts %}
+    {% include 'common_scripts.html' %}
+    {% endblock %}
+</body>
+</html>

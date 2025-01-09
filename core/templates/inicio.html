@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="main-content app-content">
+        <div class="container-fluid">
+            <h1>
+                Última revisión: 
+                <span>
+                    {% if last_run_at %}
+                        {{ last_run_at|date:"d/m/Y H:i:s" }}
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </span>
+            </h1>
+            <h1>Archivos Guardados</h1>
+            {% if info_scraps %}
+            <table border="1" class="table table-striped table-bordered" id="datatable-basic">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha Guardado</th>
+                        <th>Documento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for scrap in info_scraps %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ scrap.fecha_guardado|date:"d/m/Y H:i:s" }}</td>
+                        <td>{{ scrap.documento.name }}</td>
+                        <td>
+                            {% if scrap.documento %}
+                            <a href="{{ scrap.documento.url }}" class="btn btn-primary" download>
+                                Descargar
+                            </a>
+                            {% else %}
+                            <span>No disponible</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No hay archivos guardados para mostrar.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

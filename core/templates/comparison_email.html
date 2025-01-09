@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .section-header {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Resultado de comparación entre archivos Excel</h2>
+
+    <div>
+        <h3 class="section-header">Cambios en columnas:</h3>
+        {% if changed_data %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fila</th>
+                        <th>Columna</th>
+                        <th>Valor Anterior</th>
+                        <th>Valor Nuevo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for change in changed_data %}
+                        <tr>
+                            <td>{{ change.row }}</td>
+                            <td>{{ change.column }}</td>
+                            <td>{{ change.old_value }}</td>
+                            <td>{{ change.new_value }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No se encontraron cambios en columnas.</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h3 class="section-header">Nuevas filas añadidas:</h3>
+        {% if new_rows %}
+            <table>
+                <thead>
+                    <tr>
+                        {% for col in new_rows.0.keys %}
+                            <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in new_rows %}
+                        <tr>
+                            {% for value in row.values %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No se encontraron nuevas filas.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
