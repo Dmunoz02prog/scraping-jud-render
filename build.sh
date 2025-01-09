@@ -13,6 +13,8 @@ if not User.objects.filter(username='admin').exists():
     User.objects.create_superuser('admin', 'admin@example.com', 'password123')
 EOF
 
+gunicorn --bind 0.0.0.0:10000 datascrap.wsgi:application &
+
 echo "Iniciando Celery beat..."
 nohup celery -A datascrap worker --pool=solo --loglevel=info & 
 
