@@ -86,8 +86,12 @@ WSGI_APPLICATION = 'datascrap.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'scrap_backend_database',
+        'USER': 'root',
+        'PASSWORD': 'hccfok5fKtcAaP8B2sm1frmresHYMgvu',
+        'HOST': 'dpg-cu039623esus73aef0cg-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
