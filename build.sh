@@ -13,16 +13,10 @@ if not User.objects.filter(username='admin').exists():
     User.objects.create_superuser('admin', 'admin@example.com', 'password123')
 EOF
 
-echo "Instalando Google Chrome y chromedriver..."
-apt-get update && apt-get install -y wget unzip
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -i google-chrome-stable_current_amd64.deb || apt-get -fy install
-wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip -d /usr/local/bin
-rm google-chrome-stable_current_amd64.deb chromedriver_linux64.zip
+echo "Verificando instalaciones existentes de Google Chrome y chromedriver..."
+google-chrome --version  echo "Google Chrome no está instalado"
+chromedriver --version  echo "Chromedriver no está instalado"
 
-google-chrome --version
-chromedriver --version
 
 echo "Iniciando Celery beat..."
 nohup celery -A datascrap worker --pool=solo --loglevel=info & 
