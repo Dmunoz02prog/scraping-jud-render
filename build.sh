@@ -14,6 +14,6 @@ if not User.objects.filter(username='admin').exists():
 EOF
 
 
-celery -A datascrap worker --pool=solo --loglevel=info 
+nohup celery -A datascrap worker --pool=solo --loglevel=info & 
 
-celery -A datascrap beat --loglevel=info 
+nohup celery -A datascrap beat --loglevel=info &
