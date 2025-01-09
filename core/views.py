@@ -8,6 +8,7 @@ from .forms import *
 from django.db.models import Count
 from django_celery_beat.models import PeriodicTask
 from datetime import datetime
+import pandas as pd
 
 # Create your views here.
 
@@ -43,8 +44,6 @@ def Logout(request):
     logout(request)
     return redirect('login')
 
-import pandas as pd
-
 @login_required
 def dashboard(request):
     # Obtén los datos del modelo InfoScrap
@@ -56,7 +55,11 @@ def dashboard(request):
     except PeriodicTask.DoesNotExist:
         last_run_at = "No disponible"
 
+    user = User.objects.get(id=request.user.id)
+    print(vars(user))
+
     return render(request, 'inicio.html', {
         'last_run_at': last_run_at,
         'info_scraps': info_scraps,
+        'user': request.user,
     })
