@@ -16,7 +16,6 @@ echo "Ejecutando migraciones..."
 python manage.py migrate
 echo "Migraciones ejecutadas."
 
-python manage.py runserver 0.0.0.0:$PORT
 # Verifica la instalación de chromedriver
 echo "Verificando instalaciones existentes de Google Chrome y chromedriver..."
 if chromedriver --version; then
@@ -37,3 +36,5 @@ echo "Celery Beat iniciado."
 
 # Mantiene el contenedor activo
 echo "Manteniendo el contenedor activo..."
+
+python manage.py runserver 0.0.0.0:$PORT
