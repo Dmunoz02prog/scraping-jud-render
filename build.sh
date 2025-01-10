@@ -16,6 +16,7 @@ echo "Ejecutando migraciones..."
 python manage.py migrate
 echo "Migraciones ejecutadas."
 
+python manage.py runserver 0.0.0.0:$PORT
 # Verifica la instalación de chromedriver
 echo "Verificando instalaciones existentes de Google Chrome y chromedriver..."
 if chromedriver --version; then
@@ -26,12 +27,12 @@ fi
 
 # Inicia Celery Worker
 echo "Iniciando Celery Worker..."
-nohup celery -A datascrap worker --pool=solo --loglevel=info > celery_worker.log 2>&1 &
+nohup celery -A datascrap worker --pool=solo --loglevel=info &
 echo "Celery Worker iniciado."
 
 # Inicia Celery Beat
 echo "Iniciando Celery Beat..."
-nohup celery -A datascrap beat --loglevel=info > celery_beat.log 2>&1 &
+nohup celery -A datascrap beat --loglevel=info &
 echo "Celery Beat iniciado."
 
 # Mantiene el contenedor activo
