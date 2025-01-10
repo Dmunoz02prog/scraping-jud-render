@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-
+echo "INICIO###########..."
 set -o errexit
 
-pip install -r requirements.txt
+# pip install -r requirements.txt
 
 python manage.py collectstatic --noinput
 python manage.py migrate
 
-python manage.py runserver 0.0.0.0:$PORT
+# python manage.py runserver 0.0.0.0:$PORT
 
 python manage.py shell <<EOF
 from django.contrib.auth.models import User
