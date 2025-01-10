@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
 import pandas as pd
 import time
 from selenium.webdriver.support.ui import WebDriverWait
@@ -29,6 +30,11 @@ def scrape_to_excel():
 
     start_time = datetime.now()
     datos_obtenidos = []
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')  # Modo headless
+    chrome_options.add_argument('--disable-gpu')  # Desactiva la GPU
+    chrome_options.add_argument('--no-sandbox')  # Necesario para entornos sin root
+    chrome_options.add_argument('--disable-dev-shm-usage')  # Soluciona problemas con recursos compartidos
     admin_email = User.objects.filter(is_superuser=True).first().email  # Obtén el correo del admin
 
     # Conjuntos de datos para las búsquedas
@@ -40,7 +46,7 @@ def scrape_to_excel():
 
     try:
         # Configura el driver
-        driver = webdriver.Chrome()  # Asegúrate de tener `chromedriver` configurado en tu sistema
+        driver = webdriver.Chrome(options=chrome_options)
         
         modal_cerrado = False
         consulta_causas_click = False
