@@ -1,5 +1,3 @@
-RUN chmod +x /app/build.sh
-
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y \
@@ -19,5 +17,5 @@ RUN wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedri
 WORKDIR /app
 COPY . /app
 RUN pip install -r requirements.txt
-
+RUN chmod +x /app/build.sh
 CMD ["bash", "build.sh"]
